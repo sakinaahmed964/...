@@ -29,7 +29,7 @@
         
         /* Hero Section with Background Image */
         .hero-section {
-            background-image: url( 2026-01-31\ at\ 6.21.34\ PM.jpeg);
+            background-image: url('bg-photo.jpeg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -101,14 +101,15 @@
                 0 0 0 2px var(--gold);
         }
         
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
         .photo-placeholder {
             aspect-ratio: 4/3;
-            background: linear-gradient(135deg, #4a2d5c 0%, #6b1f3e 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: rgba(255, 255, 255, 0.6);
-            font-style: italic;
         }
         
         /* Carousel Navigation */
@@ -207,10 +208,12 @@
         
         /* Floating hearts */
         .heart {
-            position: absolute;
+            position: fixed;
             font-size: 20px;
             opacity: 0.6;
             animation: float-heart 8s linear infinite;
+            z-index: 5;
+            pointer-events: none;
         }
         
         @keyframes float-heart {
@@ -233,12 +236,12 @@
 </head>
 <body class="min-h-screen relative overflow-x-hidden">
     <!-- Floating Hearts Background -->
-    <div id="hearts-container"></div>
+    <div id="hearts-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5;"></div>
     
     <!-- Hero Section with Background Photo -->
     <div class="hero-section min-h-screen flex items-center justify-center">
         <div class="hero-overlay absolute inset-0"></div>
-        <div class="relative z-10 text-center px-4 py-20">
+        <div class="relative z-10 text-center px-4 py-20" style="z-index: 20;">
             <h1 class="garamond text-6xl sm:text-7xl md:text-6xl font-bold glow mb-6 fade-in" style="color: var(--gold);">
              I am sorry YAM 🥹❤️
             </h1>
@@ -264,7 +267,7 @@
                     <div class="carousel-slide">
                         <div class="photo-frame rotate-left">
                             <div class="photo-placeholder">
-                                <img src="/WhatsApp Unknown 2026-01-31 at 6.34.59 PM/WhatsApp Image 2026-01-31 at 6.33.25 PM.jpeg" alt="">
+                                <img src="photo1.jpeg" alt="Our memory 1">
                             </div>
                         </div>
                     </div>
@@ -273,7 +276,7 @@
                     <div class="carousel-slide">
                         <div class="photo-frame rotate-right">
                             <div class="photo-placeholder">
-                                <img src="/WhatsApp Unknown 2026-01-31 at 6.34.59 PM/WhatsApp Image 2026-01-31 at 6.33.26 PM (1).jpeg" alt="">
+                                <img src="photo2.jpeg" alt="Our memory 2">
                             </div>
                         </div>
                     </div>
@@ -282,7 +285,7 @@
                     <div class="carousel-slide">
                         <div class="photo-frame rotate-left">
                             <div class="photo-placeholder">
-                                <img src="/WhatsApp Unknown 2026-01-31 at 6.34.59 PM/WhatsApp Image 2026-01-31 at 6.33.26 PM.jpeg" alt="">
+                                <img src="photo3.jpeg" alt="Our memory 3">
                             </div>
                         </div>
                     </div>
@@ -291,7 +294,7 @@
                     <div class="carousel-slide">
                         <div class="photo-frame rotate-right">
                             <div class="photo-placeholder">
-                                <img src="/WhatsApp Image 2026-01-31 at 6.39.52 PM.jpeg" alt="">
+                                <img src="photo4.jpeg" alt="Our memory 4">
                             </div>
                         </div>
                     </div>
@@ -300,7 +303,8 @@
                     <div class="carousel-slide">
                         <div class="photo-frame rotate-left">
                             <div class="photo-placeholder">
-                                <img src="/WhatsApp Unknown 2026-01-31 at 6.34.59 PM/WhatsApp Image 2026-01-31 at 6.33.28 PM.jpeg" alt="">
+                                <img src="photo5.jpeg" alt="Our memory 5">
+                            </div>
                         </div>
                     </div>
                     
@@ -332,11 +336,14 @@
                 
                 <p>
                    I know ke kabhi kabhi mein unnecessarily zyada gussa kar deta hoon 😔, aur mujhe khud nahi pata ke kyun. Lekin phir bhi kabhi kabhi gussa aa hi jata hai 😓.
+                </p>
 
-Lekin mein yeh bhi jaanta hoon ke mein aap se bohot zyada pyar karta hoon ❤️. Aur jahan itna pyar hota hai, wahan thoda bahut gussa hona normal hai 😅 hana ? hehehe . Mein apne gusse ko justify nahi kar raha, bas aapse sach mein maafi mangta hoon 🙏 ke mein kabhi kabhi aap ke saath gussa ho gaya, ya aap ke saath theek behave nahi kiya 😞.
+                <p>
+                    Lekin mein yeh bhi jaanta hoon ke mein aap se bohot zyada pyar karta hoon ❤️. Aur jahan itna pyar hota hai, wahan thoda bahut gussa hona normal hai 😅 hana ? hehehe . Mein apne gusse ko justify nahi kar raha, bas aapse sach mein maafi mangta hoon 🙏 ke mein kabhi kabhi aap ke saath gussa ho gaya, ya aap ke saath theek behave nahi kiya 😞.
+                </p>
 
-I'm truly sorry for that 💛, aur mein promise karta hoon ke aage se apne aise reactions ko control karunga .
-
+                <p>
+                    I'm truly sorry for that 💛, aur mein promise karta hoon ke aage se apne aise reactions ko control karunga .
                 </p>
 
                 <p>
@@ -347,13 +354,10 @@ I'm truly sorry for that 💛, aur mein promise karta hoon ke aage se apne aise 
                 
                 <p class="text-center text-xl sm:text-2xl garamond  mt-10" style="color: var(--gold);">
                     1- Ice Cream & Chocolate 🍦🍫
-
                 </p>
 
                  <p class="text-center text-xl sm:text-2xl garamond  mt-10" style="color: var(--gold);">
-
                     2- Ghomi Ghomi 😋
- 
                 </p>
                 
                  <p class="text-center text-xl sm:text-2xl garamond  mt-10" style="color: var(--gold);">
@@ -428,35 +432,52 @@ I'm truly sorry for that 💛, aur mein promise karta hoon ke aage se apne aise 
 
 <!-- 
 ========================================
-HOW TO CUSTOMIZE THIS PAGE:
+HOW TO UPLOAD TO YOUR REPOSITORY:
 ========================================
 
-1. ADD YOUR BACKGROUND COUPLE PHOTO:
-   - Find line 30: background-image: url('your-couple-photo-here.jpg');
-   - Replace 'your-couple-photo-here.jpg' with your actual photo path
-   - Example: background-image: url('images/us-together.jpg');
+IMPORTANT: Rename your image files to simple names WITHOUT spaces or special characters!
 
-2. ADD CAROUSEL PHOTOS:
-   - Find each photo-placeholder div (around lines 200-240)
-   - Replace with: <img src="your-photo.jpg" alt="Description" class="w-full h-full object-cover">
-   - Do this for all 5 photos
-   - Example for Photo 1:
-     <div class="photo-frame rotate-left">
-         <img src="images/photo1.jpg" alt="Our first date" class="w-full h-full object-cover">
-     </div>
+1. RENAME YOUR PHOTOS IN YOUR REPO:
+   
+   Background Photo:
+   - Rename to: bg-photo.jpeg
+   
+   Carousel Photos (rename in order):
+   - Photo 1: photo1.jpeg
+   - Photo 2: photo2.jpeg
+   - Photo 3: photo3.jpeg
+   - Photo 4: photo4.jpeg
+   - Photo 5: photo5.jpeg
 
-3. EDIT YOUR APOLOGY MESSAGE:
-   - Find the section marked "EDIT YOUR MESSAGE HERE" (around line 270)
-   - Change the paragraphs to your own words
-   - Keep the structure for best formatting
+2. FILE STRUCTURE IN YOUR REPO:
+   your-repo/
+   ├── index.html (this file)
+   ├── bg-photo.jpeg
+   ├── photo1.jpeg
+   ├── photo2.jpeg
+   ├── photo3.jpeg
+   ├── photo4.jpeg
+   └── photo5.jpeg
 
-4. CHANGE COLORS (Optional):
-   - Find lines 14-18 (CSS variables)
-   - Adjust the color values if you want different shades
+3. ALL FILES MUST BE IN THE SAME FOLDER (root directory of your repo)
 
-5. DISABLE AUTO-PLAY (Optional):
-   - Find line 353: setInterval(nextSlide, 5000);
-   - Delete or comment out this line with //
+4. If using GitHub Pages, enable it in Settings → Pages → Source: main branch
 
-Enjoy making things right! ❤️
+ALTERNATIVE: If you want to keep your original filenames, create an "images" folder:
+   your-repo/
+   ├── index.html
+   └── images/
+       ├── bg-photo.jpeg
+       ├── photo1.jpeg
+       etc.
+   
+   Then change image paths in the HTML to: "images/bg-photo.jpeg", "images/photo1.jpeg", etc.
+
+The issue with your original code was the spaces and special characters in filenames like:
+"/WhatsApp Image 2026-01-31 at 6.21.34 PM.jpeg"
+
+URLs cannot have spaces! They need to be either:
+- Removed: "WhatsAppImage2026-01-31at6.21.34PM.jpeg"
+- Or use simple names: "photo1.jpeg" (RECOMMENDED)
+
 -->
