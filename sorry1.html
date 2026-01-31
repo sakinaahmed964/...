@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I'm Sorry yam 🥹❤️</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --purple-dark: #2d1b3d;
+            --purple-mid: #4a2d5c;
+            --maroon: #6b1f3e;
+            --maroon-light: #8b2f4e;
+            --gold: #d4af37;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, var(--purple-dark) 0%, var(--maroon) 100%);
+            color: #f5f5f5;
+        }
+        
+        .garamond {
+            font-family: 'Cormorant Garamond', serif;
+        }
+        
+        /* Hero Section with Background Image */
+        .hero-section {
+            background-image: url(/WhatsApp\ Image\ 2026-01-31\ at\ 6.21.34\ PM.jpeg);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+        }
+        
+        .hero-overlay {
+            background: linear-gradient(135deg, rgba(45, 27, 61, 0.85) 0%, rgba(107, 31, 62, 0.85) 100%);
+        }
+        
+        /* Carousel Styles */
+        .carousel-container {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            perspective: 1000px;
+            padding: 0 60px;
+        }
+        
+        @media (max-width: 768px) {
+            .carousel-container {
+                padding: 0 40px;
+            }
+        }
+        
+        .carousel-track {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .carousel-slide {
+            min-width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .photo-frame {
+            background: linear-gradient(135deg, #ff9ec4 0%, #ffb3d9 100%);
+            padding: 20px;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(212, 175, 55, 0.3);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            max-width: 650px;
+            width: 90vw;
+        }
+        
+        @media (max-width: 768px) {
+            .photo-frame {
+                max-width: 85vw;
+                padding: 15px;
+            }
+        }
+        
+        .photo-frame.rotate-left {
+            transform: rotate(-3deg);
+        }
+        
+        .photo-frame.rotate-right {
+            transform: rotate(3deg);
+        }
+        
+        .photo-frame:hover {
+            transform: scale(1.05) rotate(0deg) !important;
+            box-shadow: 
+                0 30px 80px rgba(212, 175, 55, 0.3),
+                0 0 0 2px var(--gold);
+        }
+        
+        .photo-placeholder {
+            aspect-ratio: 4/3;
+            background: linear-gradient(135deg, #4a2d5c 0%, #6b1f3e 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-style: italic;
+        }
+        
+        /* Carousel Navigation */
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(212, 175, 55, 0.9);
+            color: var(--purple-dark);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .carousel-btn:hover {
+            background: var(--gold);
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .carousel-btn.prev {
+            left: 0;
+        }
+        
+        .carousel-btn.next {
+            right: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .carousel-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+        }
+        
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 30px;
+        }
+        
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .dot.active {
+            background: var(--gold);
+            transform: scale(1.3);
+        }
+        
+        /* Message Card */
+        .message-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+        
+        @media (max-width: 768px) {
+            .message-card {
+                padding: 25px;
+                border-radius: 15px;
+            }
+        }
+        
+        /* Animations */
+        .fade-in {
+            animation: fadeIn 1.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .glow {
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+        }
+        
+        /* Floating hearts */
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            opacity: 0.6;
+            animation: float-heart 8s linear infinite;
+        }
+        
+        @keyframes float-heart {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen relative overflow-x-hidden">
+    <!-- Floating Hearts Background -->
+    <div id="hearts-container"></div>
+    
+    <!-- Hero Section with Background Photo -->
+    <div class="hero-section min-h-screen flex items-center justify-center">
+        <div class="hero-overlay absolute inset-0"></div>
+        <div class="relative z-10 text-center px-4 py-20">
+            <h1 class="garamond text-6xl sm:text-7xl md:text-6xl font-bold glow mb-6 fade-in" style="color: var(--gold);">
+             I am sorry YAM 🥹❤️
+            </h1>
+            <p class="text-2xl sm:text-3xl md:text-4xl text-white/90 italic fade-in" style="animation-delay: 0.3s;">
+                
+            </p>
+        </div>
+    </div>
+    
+    <!-- Photo Carousel Section -->
+    <div class="py-20 px-4">
+        <h2 class="garamond text-3xl sm:text-4xl md:text-5xl font-semibold text-center mb-16 glow" style="color: var(--gold);">
+            Our Ghomi Ghomi
+        </h2>
+        
+        <div class="carousel-container">
+            <button class="carousel-btn prev" onclick="previousSlide()">‹</button>
+            <button class="carousel-btn next" onclick="nextSlide()">›</button>
+            
+            <div class="carousel-wrapper overflow-hidden">
+                <div class="carousel-track" id="carouselTrack">
+                    <!-- Slide 1 -->
+                    <div class="carousel-slide">
+                        <div class="photo-frame rotate-left">
+                            <div class="photo-placeholder">
+                                <img src="/WhatsApp Unknown 2026-01-31 at 6.34.59 PM/WhatsApp Image 2026-01-31 at 6.33.25 PM.jpeg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 2 -->
+                    <div class="carousel-slide">
+                        <div class="photo-frame rotate-right">
+                            <div class="photo-placeholder">
+                                <img src="/WhatsApp Unknown 2026-01-31 at 6.34.59 PM/WhatsApp Image 2026-01-31 at 6.33.26 PM (1).jpeg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 3 -->
+                    <div class="carousel-slide">
+                        <div class="photo-frame rotate-left">
+                            <div class="photo-placeholder">
+                                <img src="/WhatsApp Unknown 2026-01-31 at 6.34.59 PM/WhatsApp Image 2026-01-31 at 6.33.26 PM.jpeg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 4 -->
+                    <div class="carousel-slide">
+                        <div class="photo-frame rotate-right">
+                            <div class="photo-placeholder">
+                                <img src="/WhatsApp Image 2026-01-31 at 6.39.52 PM.jpeg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 5 -->
+                    <div class="carousel-slide">
+                        <div class="photo-frame rotate-left">
+                            <div class="photo-placeholder">
+                                <img src="/WhatsApp Unknown 2026-01-31 at 6.34.59 PM/WhatsApp Image 2026-01-31 at 6.33.28 PM.jpeg" alt="">
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="carousel-dots" id="carouselDots">
+                <span class="dot active" onclick="goToSlide(0)"></span>
+                <span class="dot" onclick="goToSlide(1)"></span>
+                <span class="dot" onclick="goToSlide(2)"></span>
+                <span class="dot" onclick="goToSlide(3)"></span>
+                <span class="dot" onclick="goToSlide(4)"></span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Apology Message Section -->
+    <div class="py-20 px-4 pb-32">
+        <div class="max-w-4xl mx-auto message-card fade-in">
+            <h2 class="garamond text-3xl sm:text-4xl md:text-5xl font-semibold text-center mb-8 glow" style="color: var(--gold);">
+                 aik chotu sa sorry note 🥹
+            </h2>
+            
+            <div class="text-base sm:text-lg text-white/90 space-y-6 leading-relaxed">
+                <!-- EDIT YOUR MESSAGE HERE -->
+                <p class="text-center text-xl sm:text-2xl garamond italic" style="color: var(--gold);">
+                    My Dear Maryam ,
+                </p>
+                
+                <p>
+                   I know ke kabhi kabhi mein unnecessarily zyada gussa kar deta hoon 😔, aur mujhe khud nahi pata ke kyun. Lekin phir bhi kabhi kabhi gussa aa hi jata hai 😓.
+
+Lekin mein yeh bhi jaanta hoon ke mein aap se bohot zyada pyar karta hoon ❤️. Aur jahan itna pyar hota hai, wahan thoda bahut gussa hona normal hai 😅 hana ? hehehe . Mein apne gusse ko justify nahi kar raha, bas aapse sach mein maafi mangta hoon 🙏 ke mein kabhi kabhi aap ke saath gussa ho gaya, ya aap ke saath theek behave nahi kiya 😞.
+
+I'm truly sorry for that 💛, aur mein promise karta hoon ke aage se apne aise reactions ko control karunga .
+
+                </p>
+
+                <p>
+                    hehehe ab ina naraz kya hato mana na bhi para ga naw chalo bato kya chya ???
+                    (select onlyyy one 😌)
+                </p>
+                
+                
+                <p class="text-center text-xl sm:text-2xl garamond  mt-10" style="color: var(--gold);">
+                    1- Ice Cream & Chocolate 🍦🍫
+
+                </p>
+
+                 <p class="text-center text-xl sm:text-2xl garamond  mt-10" style="color: var(--gold);">
+
+                    2- Ghomi Ghomi 😋
+ 
+                </p>
+                
+                 <p class="text-center text-xl sm:text-2xl garamond  mt-10" style="color: var(--gold);">
+                    3-  Gift 🎁✨  
+                </p>
+                
+                <!-- END OF MESSAGE - Edit the paragraphs above -->
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // ========================================
+        // CAROUSEL FUNCTIONALITY
+        // ========================================
+        let currentSlide = 0;
+        const totalSlides = 5;
+        const track = document.getElementById('carouselTrack');
+        const dots = document.querySelectorAll('.dot');
+        
+        function updateCarousel() {
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+        
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateCarousel();
+        }
+        
+        function previousSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateCarousel();
+        }
+        
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+        }
+        
+        // Auto-play carousel (optional - remove if you don't want auto-play)
+        setInterval(nextSlide, 5000);
+        
+        // ========================================
+        // FLOATING HEARTS ANIMATION
+        // ========================================
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '💜';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 5) + 's';
+            heart.style.animationDelay = Math.random() * 5 + 's';
+            document.getElementById('hearts-container').appendChild(heart);
+            
+            setTimeout(() => heart.remove(), 10000);
+        }
+        
+        // Create hearts periodically
+        setInterval(createHeart, 1000);
+        
+        // Create initial hearts
+        for (let i = 0; i < 10; i++) {
+            setTimeout(createHeart, i * 300);
+        }
+    </script>
+</body>
+</html>
+
+<!-- 
+========================================
+HOW TO CUSTOMIZE THIS PAGE:
+========================================
+
+1. ADD YOUR BACKGROUND COUPLE PHOTO:
+   - Find line 30: background-image: url('your-couple-photo-here.jpg');
+   - Replace 'your-couple-photo-here.jpg' with your actual photo path
+   - Example: background-image: url('images/us-together.jpg');
+
+2. ADD CAROUSEL PHOTOS:
+   - Find each photo-placeholder div (around lines 200-240)
+   - Replace with: <img src="your-photo.jpg" alt="Description" class="w-full h-full object-cover">
+   - Do this for all 5 photos
+   - Example for Photo 1:
+     <div class="photo-frame rotate-left">
+         <img src="images/photo1.jpg" alt="Our first date" class="w-full h-full object-cover">
+     </div>
+
+3. EDIT YOUR APOLOGY MESSAGE:
+   - Find the section marked "EDIT YOUR MESSAGE HERE" (around line 270)
+   - Change the paragraphs to your own words
+   - Keep the structure for best formatting
+
+4. CHANGE COLORS (Optional):
+   - Find lines 14-18 (CSS variables)
+   - Adjust the color values if you want different shades
+
+5. DISABLE AUTO-PLAY (Optional):
+   - Find line 353: setInterval(nextSlide, 5000);
+   - Delete or comment out this line with //
+
+Enjoy making things right! ❤️
+-->
